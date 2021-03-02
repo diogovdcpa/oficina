@@ -89,10 +89,14 @@ if(@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] != 'Admin'){
                     $titulo = "Editar Registro";
                     $id2 = $_GET['id'];
 
-                    $query = $pdo->query("SELECT * FROM carac where id = '" . $id2 . "' ");
+                    $query = $pdo->query("SELECT * FROM mecanicos where id = '" . $id2 . "' ");
                     $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
                     $nome2 = $res[0]['nome'];
+                    $cpf2 = $res[0]['cpf'];
+                    $telefone2 = $res[0]['telefone'];
+                    $email2 = $res[0]['email'];
+                    $endereco2 = $res[0]['endereco'];
                 } else {
                     $titulo = "Inserir Registro";
                 }
@@ -110,11 +114,28 @@ if(@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] != 'Admin'){
 
                     <div class="form-group">
                         <label>Nome</label>
-                        <input value="<?php echo @$nome2 ?>" type="text" class="form-control" id="nome-cat" name="nome-cat" placeholder="Nome">
+                        <input value="<?php echo @$nome2 ?>" type="text" class="form-control" id="nome_mec" name="nome_mec" placeholder="Nome">
                     </div>
 
+                    <div class="form-group">
+                        <label>CPF</label>
+                        <input value="<?php echo @$cpf2 ?>" type="text" class="form-control" id="cpf" name="cpf_mec" placeholder="CPF">
+                    </div>
 
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <input value="<?php echo @$telefone2 ?>" type="text" class="form-control" id="telefone" name="telefone_mec" placeholder="Telefone">
+                    </div>
 
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input value="<?php echo @$email2 ?>" type="text" class="form-control" id="email_mec" name="email_mec" placeholder="Email">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Endereco</label>
+                        <input value="<?php echo @$endereco2 ?>" type="text" class="form-control" id="endereco_mec" name="endereco_mec" placeholder="Endereco">
+                    </div>
 
                     <small>
                         <div id="mensagem">
@@ -125,11 +146,7 @@ if(@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] != 'Admin'){
                 </div>
 
 
-
                 <div class="modal-footer">
-
-
-
                     <input value="<?php echo @$_GET['id'] ?>" type="hidden" name="txtid2" id="txtid2">
                     <input value="<?php echo @$nome2 ?>" type="hidden" name="antigo" id="antigo">
 
