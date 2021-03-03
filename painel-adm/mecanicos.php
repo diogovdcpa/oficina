@@ -33,8 +33,8 @@ if(@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] != 'Admin'){
                         <th>Nome</th>
                         <th>CPF</th>
                         <th>Telefone</th>
-                        <th>Telefone</th>
                         <th>Email</th>
+                        <th>Endereco</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
