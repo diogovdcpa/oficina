@@ -3,14 +3,13 @@
 $pag = "mecanicos";
 require_once("../conexao.php");
 
-/*  
-@session_start();
-    //verificar se o usuário está autenticado
-if(@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] != 'Admin'){
-    echo "<script language='javascript'> window.location='../index.php' </script>";
 
+session_start();
+if(@$_SESSION['nivel_usu'] == null || @$_SESSION['nivel_usu'] != 'admin' ){
+    echo "<script language='javascript'> window.alert('Sem Acesso')</script>";
+    echo "<script language='javascript'> window.location='../index.php' </script>";
 }
-*/
+
 
 ?>
 
