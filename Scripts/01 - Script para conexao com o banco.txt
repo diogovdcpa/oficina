@@ -6,7 +6,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 try
 {
-    $PDO = new PDO("mysql:dbname=$bd;host=$servidor;charset=utf8","$usuario","$senha");
+    $pdo = new PDO("mysql:dbname=$bd;host=$servidor;charset=utf8","$usuario","$senha");
 }
 catch ( Exception $e )
 {

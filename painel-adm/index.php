@@ -173,7 +173,7 @@ $menu6 = "menu6";
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nome_usu'] ?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $nome_usu ?></span>
                                 <img class="img-profile rounded-circle" src="../img/sem-foto.jpg">
 
                             </a>
@@ -258,22 +258,22 @@ $menu6 = "menu6";
 
                         <div class="form-group">
                             <label>Nome</label>
-                            <input value="<?php echo $nome ?>" type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+                            <input value="<?php echo $nome_usu ?>" type="text" class="form-control" id="nome" name="nome_usu" placeholder="Nome">
                         </div>
 
                         <div class="form-group">
                             <label>CPF</label>
-                            <input value="<?php echo $cpf ?>" type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF">
+                            <input value="<?php echo $cpf_usu ?>" type="text" class="form-control" id="cpf" name="cpf_usu" placeholder="CPF">
                         </div>
 
                         <div class="form-group">
                             <label>Email</label>
-                            <input value="<?php echo $email ?>" type="email" class="form-control" id="email" name="email" placeholder="Email">
+                            <input value="<?php echo $email_usu ?>" type="email" class="form-control" id="email" name="email_usu" placeholder="Email">
                         </div>
 
                         <div class="form-group">
                             <label>Senha</label>
-                            <input value="" type="password" class="form-control" id="text" name="senha" placeholder="Senha">
+                            <input value="" type="password" class="form-control" id="senha_usu" name="senha_usu" placeholder="Senha">
                         </div>
 
                         <!--
@@ -297,10 +297,10 @@ $menu6 = "menu6";
 
                     </div>
                     <div class="modal-footer">
-                        <input value="<?php echo $idUsuario ?>" type="hidden" name="txtid" id="txtid">
-                        <input value="<?php echo $cpf ?>" type="hidden" name="antigo" id="antigo">
+                        <input value="<?php echo $_SESSION['id_usu'] ?>" type="hidden" name="id_usu" id="id_usu">
+                        <input value="<?php echo $cpf_usu ?>" type="hidden" name="antigo_usu" id="antigo_usu">
 
-                        <button type="button" id="btn-fechar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btn-fechar-perfil" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button type="submit" name="btn-salvar-perfil" id="btn-salvar-perfil" class="btn btn-primary">Salvar</button>
                     </div>
                 </form>
@@ -338,3 +338,52 @@ $menu6 = "menu6";
 </body>
 
 </html>
+
+
+<!--AJAX PARA INSERÇÃO E EDIÇÃO DOS DADOS COM OU SEM IMAGEM -->
+<script type="text/javascript">
+    $("#form-perfil").submit(function() {
+
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: "editar-perfil.php",
+            type: 'POST',
+            data: formData,
+
+            success: function(mensagem) {
+
+                $('#mensagem').removeClass()
+
+                if (mensagem.trim() == "Salvo com Sucesso!!") {
+
+                    //$('#nome').val('');
+                    //$('#cpf').val('');
+                    $('#btn-fechar-perfil').click();
+                    window.location = "index.php";
+
+                } else {
+
+                    $('#mensagem').addClass('text-danger')
+                }
+
+                $('#mensagem').text(mensagem)
+
+            },
+
+            cache: false,
+            contentType: false,
+            processData: false,
+            xhr: function() { // Custom XMLHttpRequest
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                    myXhr.upload.addEventListener('progress', function() {
+                        /* faz alguma coisa durante o progresso do upload */
+                    }, false);
+                }
+                return myXhr;
+            }
+        });
+    });
+</script>
