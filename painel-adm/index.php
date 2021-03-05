@@ -95,7 +95,7 @@ $menu6 = "menu6";
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="index.php?pag=<?php echo $menu1 ?>">Mecanicos</a>
-                        <a class="collapse-item" href="index.php?pag=<?php echo $menu2 ?>">Menu 2</a>
+                        <a class="collapse-item" href="index.php?pag=<?php echo $menu2 ?>">Recepcionistas</a>
                     </div>
                 </div>
             </li>

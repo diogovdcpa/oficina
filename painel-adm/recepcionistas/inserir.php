@@ -30,7 +30,7 @@ if ($email == "") {
 
 // VERIFICA SE JA EXISTE REGISTRO NO BANCO DE DADOS
 if ($antigo != $cpf) {
-    $query = $pdo->query("SELECT * FROM mecanicos where cpf = '$cpf' ");
+    $query = $pdo->query("SELECT * FROM recepcionistas where cpf = '$cpf' ");
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
     $total_reg = @count($res);
     if ($total_reg > 0) {
@@ -41,17 +41,17 @@ if ($antigo != $cpf) {
 
 // INSERINDO E EDITANDO DADOS.
 if ($id == "") { // INSERINDO DADOS NO BANCO
-    // INSERINDO NA TABELA MECANICOS
-    $res = $pdo->prepare("INSERT INTO mecanicos SET nome = :nome, cpf = :cpf, telefone = :telefone, email = :email, endereco = :endereco");
+    // INSERINDO NA TABELA recepcionistas
+    $res = $pdo->prepare("INSERT INTO recepcionistas SET nome = :nome, cpf = :cpf, telefone = :telefone, email = :email, endereco = :endereco");
 
     // INSERINDO NA TABELA USUARIOS
     $res2 = $pdo->prepare("INSERT INTO usuarios SET nome = :nome, cpf = :cpf, email = :email, senha = :senha, nivel = :nivel");
 
     $res2->bindValue(":senha", '123');
-    $res2->bindValue(":nivel", 'mecanico');
+    $res2->bindValue(":nivel", 'recep');
 } else { // EDITANDO REGISTRO
-    // EDITANDO DADOS MECANICOS
-    $res = $pdo->prepare("UPDATE mecanicos SET nome = :nome, cpf = :cpf, telefone = :telefone, email = :email, endereco = :endereco WHERE id = '$id' ");
+    // EDITANDO DADOS recepcionistas
+    $res = $pdo->prepare("UPDATE recepcionistas SET nome = :nome, cpf = :cpf, telefone = :telefone, email = :email, endereco = :endereco WHERE id = '$id' ");
 
     // EDITANDO DADOS USUARIOS
     $res2 = $pdo->prepare("UPDATE usuarios SET nome = :nome, cpf = :cpf, email = :email WHERE cpf = '$antigo' ");
